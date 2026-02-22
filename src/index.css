@@ -1,0 +1,237 @@
+/* ══════════════════════════════════════
+   Global — Mobile-first reset & base
+══════════════════════════════════════ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0a0b18;
+    --bg2: #10112a;
+    --surface: rgba(255, 255, 255, 0.06);
+    --surface2: rgba(255, 255, 255, 0.10);
+    --border: rgba(255, 255, 255, 0.09);
+    --primary: #7c5cfc;
+    --primary-g: #a97cff;
+    --accent: #00d4aa;
+    --danger: #ff5a5a;
+    --text: #e8eaf6;
+    --muted: #7e82a8;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.22s cubic-bezier(.4, 0, .2, 1);
+    --nav-h: 64px;
+    --tab-h: 68px;
+    /* bottom tab bar height on mobile */
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    /* push content above bottom tab bar on mobile */
+    padding-bottom: var(--tab-h);
+}
+
+@media (min-width: 640px) {
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* ══════ App shell ══════ */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+/* ══════════════════════════════════════
+   TOP TAB BAR (desktop ≥ 640px)
+   BOTTOM NAV BAR (mobile < 640px)
+══════════════════════════════════════ */
+.tab-bar {
+    display: flex;
+    background: rgba(10, 11, 24, 0.92);
+    border-bottom: 1px solid var(--border);
+    padding: 0 8px;
+    gap: 2px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 90;
+}
+
+/* ── Mobile: fixed bottom navigation ── */
+@media (max-width: 639px) {
+    .tab-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        height: var(--tab-h);
+        border-top: 1px solid var(--border);
+        border-bottom: none;
+        padding: 0;
+        padding-bottom: env(safe-area-inset-bottom);
+        background: rgba(10, 11, 24, 0.97);
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+        gap: 0;
+        z-index: 200;
+    }
+}
+
+.tab-btn {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 8px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    min-height: 56px;
+}
+
+/* desktop: horizontal layout */
+@media (min-width: 640px) {
+    .tab-btn {
+        flex-direction: row;
+        gap: 7px;
+        padding: 14px 20px;
+        font-size: 0.88rem;
+        flex: initial;
+        min-height: auto;
+    }
+
+    .tab-btn::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 2px 2px 0 0;
+        transform: scaleX(0);
+        transition: var(--transition);
+    }
+
+    .tab-btn.active::after {
+        transform: scaleX(1);
+    }
+}
+
+.tab-btn.active {
+    color: var(--primary-g);
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--text);
+}
+
+/* mobile icon pill on active */
+@media (max-width: 639px) {
+    .tab-btn.active .tab-icon-wrap {
+        background: rgba(124, 92, 252, 0.18);
+        transform: scale(1.08);
+    }
+}
+
+.tab-icon-wrap {
+    width: 40px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    transition: var(--transition);
+}
+
+.tab-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+@media (min-width: 640px) {
+    .tab-icon-wrap {
+        width: auto;
+        height: auto;
+        background: none !important;
+    }
+
+    .tab-icon {
+        font-size: 1rem;
+    }
+}
+
+.list-badge {
+    position: absolute;
+    top: 6px;
+    right: calc(50% - 20px);
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 99px;
+    min-width: 17px;
+    text-align: center;
+    line-height: 15px;
+    border: 1.5px solid var(--bg);
+}
+
+@media (min-width: 640px) {
+    .list-badge {
+        position: static;
+        border: none;
+        padding: 2px 7px;
+        font-size: 0.7rem;
+        line-height: 16px;
+        min-width: 20px;
+    }
+}
+
+/* ══════ Shared typography ══════ */
+.pane-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: var(--text);
+}
+
+.pane-subtitle {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 640px) {
+    .pane-title {
+        font-size: 1.5rem;
+    }
+}

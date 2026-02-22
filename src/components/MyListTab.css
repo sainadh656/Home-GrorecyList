@@ -1,0 +1,267 @@
+/* ══ Pane reuse ══ */
+.pane {
+    padding: 20px 16px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    animation: paneIn 0.28s ease both;
+}
+
+@keyframes paneIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 640px) {
+    .pane {
+        padding: 28px 24px 40px;
+    }
+}
+
+/* ══ Header row ══ */
+.list-pane-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.list-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ══ Action buttons ══ */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.09);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: 0.22s;
+}
+
+.action-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #7c5cfc, #a97cff);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(124, 92, 252, 0.4);
+}
+
+.download-btn:active {
+    transform: scale(0.97);
+}
+
+@media (hover:hover) {
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(124, 92, 252, 0.55);
+    }
+}
+
+.clear-btn {
+    background: rgba(255, 90, 90, 0.08);
+    color: #ff5a5a;
+    border-color: rgba(255, 90, 90, 0.25);
+}
+
+.clear-btn:hover {
+    background: rgba(255, 90, 90, 0.14);
+    border-color: #ff5a5a;
+}
+
+/* ══ Downloadable card ══ */
+.list-download-area {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.list-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(124, 92, 252, 0.28) 0%, rgba(0, 212, 170, 0.10) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.list-card-brand {
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a97cff, #00d4aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.list-card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    font-size: 0.75rem;
+    color: #7e82a8;
+}
+
+.list-items-container {
+    padding: 12px;
+}
+
+@media (min-width: 640px) {
+    .list-items-container {
+        padding: 16px;
+    }
+}
+
+/* ══ Empty state ══ */
+.empty-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 52px 16px;
+    color: #7e82a8;
+    font-size: 0.92rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.empty-list span {
+    font-size: 3.2rem;
+}
+
+/* ══ List rows ══ */
+.list-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 12px;
+    border-radius: 12px;
+    gap: 10px;
+    transition: 0.2s;
+    animation: fadeUp 0.28s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.list-row+.list-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.list-row-num {
+    font-size: 0.72rem;
+    color: #7e82a8;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 2px 4px;
+}
+
+.list-row-emoji {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.list-row-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #e8eaf6;
+    flex: 1;
+    min-width: 0;
+}
+
+.list-row-note {
+    font-size: 0.73rem;
+    color: #7e82a8;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.list-row-qty {
+    background: rgba(124, 92, 252, 0.15);
+    color: #a97cff;
+    font-size: 0.77rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.list-row-delete {
+    background: none;
+    border: none;
+    color: #7e82a8;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.list-row-delete:hover {
+    color: #ff5a5a;
+    background: rgba(255, 90, 90, 0.1);
+}
+
+.list-row-delete svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 639px) {
+    .list-pane-header {
+        flex-direction: column;
+    }
+
+    .list-actions {
+        width: 100%;
+    }
+
+    .download-btn,
+    .clear-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
