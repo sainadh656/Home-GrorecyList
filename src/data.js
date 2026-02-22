@@ -1,6 +1,6 @@
 // ─── Google OAuth Client ID ───────────────────────────────
 // Replace with your own from https://console.cloud.google.com/
-export const CLIENT_ID = '897324727631-m4fh5nrrdq1k4u6r0u6j5hq6alhgkl28.apps.googleusercontent.com';
+export const CLIENT_ID = 'https://console.cloud.google.com/api';
 
 // ─── Routine Items ────────────────────────────────────────
 export const ROUTINE_ITEMS = [
